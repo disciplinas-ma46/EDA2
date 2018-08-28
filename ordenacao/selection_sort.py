@@ -1,24 +1,30 @@
 import random
 a = []
 j = 0
-a = random.sample(range(10),3)
+pri_menor = 0
+sec_menor = 0
 
-print(a)
+def troca(lista, val1, val2):
+    lista[val1], lista[val2] = lista[val2], lista[val1]
 
-def selection_sort():
-    global j
+
+def selection_sort(lista):
+    global j 
     for i in range(0, len(a), 1):
-        #actual = a[i]
-
-        for j in range(i ,0, -1): 
-            a[j-1], a[j] = a[j-1] , a[j]
+        for j in range(i + 1 , len(a), 1):
+            if(lista[j] < lista[i]):
+                troca(lista, i, j)
+        print(lista)
         
 
-selection_sort()
+a = random.sample(range(100),50)
+print(a)
+selection_sort(a)
 
-
+'''
 b = 2
 c = 3
 
 b,c = c,b
 print(b,c)
+'''
