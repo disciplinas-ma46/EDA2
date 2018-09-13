@@ -1,10 +1,29 @@
 import csv
-inserir = ['automoveis 1.0', 33.81]
+
+nota = []
+
+'''inserir = ['automoveis 1.0', 33.81]
 with open(r'impostos.csv', 'a') as data:
     writer = csv.writer(data)
     writer.writerow(inserir)
+'''
+#data = csv.reader(open('impostos.csv', 'r', delim))
+#next(data)  # Descarta o cabeçalho 
+#imprimir primeira coluna
 
-data = csv.reader(open('impostos.csv', 'r')) 
-#imprimir primeira coluna 
-for rows in data: 
-    print rows 
+with open ("impostos.csv", "r") as f:
+    dados = csv.reader(f, delimiter=";")
+    next(dados) # Descarta o cabeçalho
+
+    lista = list(dados)
+
+for i in lista:
+    del i[0]
+
+print(lista)
+
+#lista_ordenada = sorted(dados, )
+
+#print(dados[0][0])
+
+ 
