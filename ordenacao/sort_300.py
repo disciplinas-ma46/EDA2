@@ -2,7 +2,8 @@ import csv
 
 nota = []
 
-'''inserir = ['automoveis 1.0', 33.81]
+'''
+inserir = ['automoveis 1.0', 33.81]
 with open(r'impostos.csv', 'a') as data:
     writer = csv.writer(data)
     writer.writerow(inserir)
@@ -11,19 +12,21 @@ with open(r'impostos.csv', 'a') as data:
 #next(data)  # Descarta o cabeçalho 
 #imprimir primeira coluna
 
-with open ("impostos.csv", "r") as f:
-    dados = csv.reader(f, delimiter=";")
+with open ("arquivo.csv", "r") as f:
+    dados = csv.DictReader(f, delimiter=",")
     next(dados) # Descarta o cabeçalho
 
-    lista = list(dados)
+    #lista = dados
 
-for i in lista:
-    del i[0]
+    for line in dados:
+        nota.append(list(line.values()))
 
-print(lista)
-
+    for row in nota:
+        print(row[1])
 #lista_ordenada = sorted(dados, )
 
 #print(dados[0][0])
 
- 
+
+#for i in lista:
+#    del i[0]
