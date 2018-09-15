@@ -2,6 +2,13 @@ import csv
 
 nota = []
 
+def number_per_group(number):
+    return number/5
+
+def populate_growing(lists):
+    for i in range(0,4,1):
+       lists[i].append(i)
+
 '''
 inserir = ['automoveis 1.0', 33.81]
 with open(r'impostos.csv', 'a') as data:
@@ -9,20 +16,25 @@ with open(r'impostos.csv', 'a') as data:
     writer.writerow(inserir)
 '''
 #data = csv.reader(open('impostos.csv', 'r', delim))
-#next(data)  # Descarta o cabeçalho 
+#next(data)  # Descarta o cabeçalho
 #imprimir primeira coluna
 
-with open ("arquivo.csv", "r") as f:
-    dados = csv.DictReader(f, delimiter=",")
-    next(dados) # Descarta o cabeçalho
+with open ("impostos.csv", "r") as f:
+    dados = csv.DictReader(f, delimiter=";")
+    #next(dados) # Descarta o cabeçalho
 
     #lista = dados
 
     for line in dados:
         nota.append(list(line.values()))
 
-    for row in nota:
-        print(row[1])
+nota.sort(key=lambda x: x[1], reverse=True)
+
+qtd_per_group = number_per_group(len(nota))
+
+populate_growing(nota)
+
+print(nota)
 #lista_ordenada = sorted(dados, )
 
 #print(dados[0][0])
