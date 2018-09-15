@@ -1,7 +1,7 @@
 import csv
 from math import floor 
 
-nota = []
+people = []
 actual = 1
 growing = 1
 decreasing  = 0
@@ -14,33 +14,21 @@ def populate_growing(lists):
     for i in range(0,4,1):
        lists[i].append(i)
 
-'''
-inserir = ['automoveis 1.0', 33.81]
-with open(r'impostos.csv', 'a') as data:
-    writer = csv.writer(data)
-    writer.writerow(inserir)
-'''
-#data = csv.reader(open('impostos.csv', 'r', delim))
-#next(data)  # Descarta o cabeçalho
-#imprimir primeira coluna
-
 with open ("impostos.csv", "r") as f:
-    dados = csv.DictReader(f, delimiter=";")
+    dados = csv.DictReader(f, delimiter=",")
     #next(dados) # Descarta o cabeçalho
 
-    #lista = dados
-
     for line in dados:
-        nota.append(list(line.values()))
+        people.append(list(line.values()))
 
-nota.sort(key=lambda x: x[1], reverse=True)
+people.sort(key=lambda x: x[1], reverse=True)
 
-qtd_per_group = number_per_group(len(nota))
+qtd_per_group = number_per_group(len(people))
 decreasing = floor(qtd_per_group)
 
 print("actual: %d growing: %d deacreasing: %d" %(actual, growing, decreasing))
 
-for line in nota:
+for line in people:
     if(growing > floor(qtd_per_group)):
         growing = 1
         actual += 1
@@ -51,7 +39,7 @@ for line in nota:
         actual += 1
         pass
 
-    if(actual == 1 or (len(nota) - i) < floor(qtd_per_group) and decreasing == floor(qtd_per_group)):
+    if(actual == 1 or (len(people) - i) < floor(qtd_per_group) and decreasing == floor(qtd_per_group)):
         line.append(growing)
         growing += 1
     elif(actual > 1):
@@ -60,15 +48,11 @@ for line in nota:
     print("actual: %d growing: %d deacreasing: %d" %(actual, growing, decreasing))
     i += 1
 
-nota.sort(key=lambda x: x[2])
+people.sort(key=lambda x: x[2])
 
-for line in nota:
-    print(line)
+c = csv.writer(open("trezentos_grupos.csv", "w"))
+c.writerow(["Nome","Nota","Grupo"])
 
-#lista_ordenada = sorted(dados, )
+for line in people:
+    c.writerow(line)
 
-#print(dados[0][0])
-
-
-#for i in lista:
-#    del i[0]
