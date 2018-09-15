@@ -1,6 +1,11 @@
 import csv
+from math import floor 
 
 nota = []
+actual = 1
+growing = 1
+decreasing  = 0
+i = 1
 
 def number_per_group(number):
     return number/5
@@ -31,10 +36,35 @@ with open ("impostos.csv", "r") as f:
 nota.sort(key=lambda x: x[1], reverse=True)
 
 qtd_per_group = number_per_group(len(nota))
+decreasing = floor(qtd_per_group)
 
-populate_growing(nota)
+print("actual: %d growing: %d deacreasing: %d" %(actual, growing, decreasing))
 
-print(nota)
+for line in nota:
+    if(growing > floor(qtd_per_group)):
+        growing = 1
+        actual += 1
+        pass
+    
+    if(decreasing < 1):
+        decreasing = floor(qtd_per_group)
+        actual += 1
+        pass
+
+    if(actual == 1 or (len(nota) - i) < floor(qtd_per_group) and decreasing == floor(qtd_per_group)):
+        line.append(growing)
+        growing += 1
+    elif(actual > 1):
+        line.append(decreasing)
+        decreasing -= 1
+    print("actual: %d growing: %d deacreasing: %d" %(actual, growing, decreasing))
+    i += 1
+
+nota.sort(key=lambda x: x[2])
+
+for line in nota:
+    print(line)
+
 #lista_ordenada = sorted(dados, )
 
 #print(dados[0][0])
