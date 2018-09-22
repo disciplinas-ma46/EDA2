@@ -1,5 +1,5 @@
 import csv
-from math import floor 
+from math import floor
 
 people = []
 actual = 1
@@ -33,7 +33,7 @@ for line in people:
         growing = 1
         actual += 1
         pass
-    
+
     if(decreasing < 1):
         decreasing = floor(qtd_per_group)
         actual += 1
@@ -55,4 +55,4 @@ c.writerow(["Nome","Nota","Grupo"])
 
 for line in people:
     c.writerow(line)
-
+    
