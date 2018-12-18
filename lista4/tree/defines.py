@@ -1,0 +1,5 @@
+PRETO = 'p'
+VERMELHO = 'v'
+BRANCO = 'b'
+TIPO_AVL = 'a'
+TIPO_VP = 'v'
